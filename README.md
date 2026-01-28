@@ -1,40 +1,35 @@
-# Simprint Release
+# Simprint
 
-本仓库用于存放 **Simprint（Tauri Windows）** 的发布产物（Release artifacts），以便在主代码仓库为私有仓库的情况下，仍可通过公开仓库分发安装包与更新元数据。
+简洁、现代、可靠（`简于形，安于迹`）。
 
-## 内容说明
+Simprint 是一款反检测浏览器桌面应用，面向多账号安全管理与自动化场景：创建具有独特指纹的隔离浏览器配置文件，结合代理、团队协作与工作流能力，降低关联风险并提升运营效率。
 
-- **Windows 安装包（NSIS）**：例如 `Simprint_<version>_x64-setup.exe`
-- **更新元数据**：`latest.json`（供客户端/更新器读取）
+## 下载
 
-> 说明：本仓库不存放源代码，仅存放编译产物与更新所需文件。
+- **Windows（64-bit）**：适用于 Windows 10/11  
+  - 下载入口：请从本仓库的 **Releases** 页面获取最新版本安装包与更新文件（`latest.json`）。
 
-## 推荐目录结构
+> macOS / Linux：即将推出。
 
-```
-/
-├── latest.json
-└── windows/
-    └── v0.1.0/
-        ├── Simprint_0.1.0_x64-setup.exe
-        └── Simprint_0.1.0_x64-setup.exe.sig  (可选：若启用签名)
-```
+## 系统要求（Windows）
 
-## 发布流程（从主仓库产物同步到本仓库）
+- Windows 10/11 64 位
+- 至少 8GB 内存
+- 至少 500MB 可用磁盘空间
 
-1. 在主仓库（`Simprint/simprint`）完成构建并生成 `latest.json`
-   - 构建前端：`node build.cjs`
-   - 打包（Windows）：`cargo tauri build`
-   - 生成 `latest.json`：`node deploy/generate-latest-json.mjs`
+## 主要能力
 
-2. 将生成的产物复制/同步到本仓库目录并提交
-   - `latest.json`
-   - `src-tauri/target/release/bundle/nsis/*.exe`（以及可选的 `.sig`）
+- **隔离环境**：为每个账号创建独立浏览器配置文件，避免相互污染与关联
+- **指纹管理**：配置并审计浏览器指纹，提升环境稳定性与一致性
+- **代理管理**：灵活配置代理（支持批量管理与规则设置）
+- **自动化工作流**：创建与运行自动化任务，提升重复操作效率
+- **团队协作**：支持团队场景下的账号/环境管理与权限协同（规划中/持续完善）
 
-3. 推送到本仓库 `main` 分支
+## 文档
 
-## 注意事项
+- 使用文档与最佳实践请参考官网文档入口（与官网保持同步更新）。
 
-- `latest.json` 中的下载 URL 通常指向本仓库的文件托管位置（或 GitHub Releases 的下载地址）。
-- 若你启用了签名（`.sig` / `signature` 字段），请确保发布流程同时同步签名文件。
+## 免责声明
+
+Simprint 旨在用于合法合规的账号与环境管理场景。使用者需遵守所在地法律法规及相关平台政策，并对自身行为承担全部责任。
 
